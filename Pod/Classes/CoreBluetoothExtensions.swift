@@ -1,14 +1,8 @@
-/**
-    CoreBluetoothExtensions.swift
-    
-    Easily identify which state a CBCentralManager or CBPeripheralManager is in
-    
-    <https://gist.github.com/tannernelson/f6ba585244afa80b06d2>
-*/
-
 import CoreBluetooth
 
 extension CBCentralManager {
+    
+    ///String version of the CBCentralManagerState enum
     var stateString: String {
         get {
             switch (self.state) {
@@ -28,9 +22,12 @@ extension CBCentralManager {
             
         }
     }
+    
 }
 
 extension CBPeripheralManager {
+    
+    ///String version of the CBCentralManagerState enum
     var stateString: String {
         get {
             switch (self.state) {
@@ -50,4 +47,5 @@ extension CBPeripheralManager {
             
         }
     }
+    
 }

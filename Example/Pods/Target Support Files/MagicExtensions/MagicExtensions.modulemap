@@ -1,0 +1,6 @@
+framework module MagicExtensions {
+  umbrella header "MagicExtensions-umbrella.h"
+
+  export *
+  module * { export * }
+}

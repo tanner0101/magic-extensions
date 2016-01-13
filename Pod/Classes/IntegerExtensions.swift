@@ -1,12 +1,6 @@
-/**
- IntExtensions.swift
- 
- Convert an arbitrary length byte array into a Swift Int
- 
- <https://gist.github.com/e720877bf7700138eb99.git>
- */
-
 extension Int {
+    
+    ///Creates an `Int` from an arbitrary byte array
     static func fromByteArray(bytes: [UInt8]) -> Int {
         var int = 0
         
@@ -19,4 +13,5 @@ extension Int {
         
         return int
     }
+    
 }

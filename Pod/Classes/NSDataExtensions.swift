@@ -1,15 +1,8 @@
-//
-//  NSData.swift
-//  Pods
-//
-//  Created by Tanner Nelson on 9/15/15.
-//
-//
-
 import Foundation
 
 extension NSData {
     
+    ///Converts the `NSData` object to a `UInt8`
     var uint8: UInt8 {
         get {
             var number: UInt8 = 0
@@ -18,6 +11,7 @@ extension NSData {
         }
     }
     
+    ///Converts the `NSData` object to a `UInt16`
     var uint16: UInt16 {
         get {
             var number: UInt16 = 0
@@ -26,6 +20,7 @@ extension NSData {
         }
     }
     
+    ///Converts the `NSData` object to a `UInt32`
     var uint32: UInt32 {
         get {
             var number: UInt32 = 0
@@ -34,6 +29,7 @@ extension NSData {
         }
     }
     
+    ///Converts the `NSData` object to an `NSUUID`
     var uuid: NSUUID? {
         get {
             var bytes = [UInt8](count: self.length, repeatedValue: 0)
@@ -42,6 +38,7 @@ extension NSData {
         }
     }
     
+    ///Converts the `NSData` object to a `String`
     var string: String {
         get {
             if let string = NSString(data: self, encoding: NSUTF8StringEncoding) {
@@ -52,77 +49,11 @@ extension NSData {
         }
     }
     
-    var stringUsingEddystoneUrlEncoding: String {
-        get {
-            //constants
-            let schemePrefixes = [
-                "http://www.",
-                "https:/www.",
-                "http://",
-                "https://"
-            ]
-            
-            let urlEncodings = [
-                ".com/",
-                ".org/",
-                ".edu/",
-                ".net/",
-                ".info/",
-                ".biz/",
-                ".gov/",
-                ".com",
-                ".org",
-                ".edu",
-                ".net",
-                ".info",
-                ".biz",
-                ".gov"
-            ]
-            
-            let count = self.length / sizeof(Int8)
-            var rawBytes = [Int8](count: count, repeatedValue: 0)
-            self.getBytes(&rawBytes, length:count * sizeof(Int8))
-            
-            var urlString = ""
-            
-            var bytes = [Int]()
-            for rawByte in rawBytes {
-                bytes.append(Int(rawByte))
-            }
-            
-            for (offset, byte) in bytes.enumerate() {
-                switch offset {
-                case 0:
-                    if byte < schemePrefixes.count {
-                        urlString += schemePrefixes[byte]
-                    }
-                case 1...bytes.count-1:
-                    if byte < urlEncodings.count {
-                        if byte < urlEncodings.count {
-                            urlString += urlEncodings[byte]
-                        } else {
-                            urlString += String(byte)
-                        }
-                    } else {
-                        let unicode = UnicodeScalar(byte)
-                        let character = Character(unicode)
-                        urlString.append(character)
-                    }
-                default:
-                    break
-                }
-                
-            }
-            
-            return urlString
-        }
-    }
-
-    
 }
 
 extension Int {
     
+    //Converts the `Int` to an `NSData` object
     var data: NSData {
         var int = self
         return NSData(bytes: &int, length: sizeof(Int))
@@ -132,6 +63,7 @@ extension Int {
 
 extension UInt8 {
     
+    //Converts the `UInt8` to an `NSData` object
     var data: NSData {
         var int = self
         return NSData(bytes: &int, length: sizeof(UInt8))
@@ -141,6 +73,7 @@ extension UInt8 {
 
 extension UInt16 {
     
+    //Converts the `UInt16` to an `NSData` object
     var data: NSData {
         var int = self
         return NSData(bytes: &int, length: sizeof(UInt16))
@@ -150,6 +83,7 @@ extension UInt16 {
 
 extension UInt32 {
     
+    //Converts the `UInt32` to an `NSData` object
     var data: NSData {
         var int = self
         return NSData(bytes: &int, length: sizeof(UInt32))
@@ -159,6 +93,7 @@ extension UInt32 {
 
 extension NSUUID {
     
+    //Converts the `NSUUID` to an `NSData` object
     var data: NSData {
         var uuid = [UInt8](count: 16, repeatedValue: 0)
         self.getUUIDBytes(&uuid)
@@ -169,82 +104,7 @@ extension NSUUID {
 
 extension String {
     
-    var dataUsingEddystoneUrlEncoding: NSData {
-        get {
-            var bytes = [UInt8]()
-            
-            typealias EncodingPattern = (pattern: String, encoding: UInt8)
-            
-            let urlSchemePrefixes: [EncodingPattern] = [
-                ("https://www.", 1),
-                ("http://www.", 0),
-                ("https://", 3),
-                ("http://", 2),
-            ]
-            
-            let urlEncodings: [EncodingPattern] = [
-                (".com/", 0),
-                (".org/", 1),
-                (".edu/", 2),
-                (".net/", 3),
-                (".info/", 4),
-                (".biz/", 5),
-                (".gov/", 6),
-                (".com", 7),
-                (".org", 8),
-                (".edu", 9),
-                (".net", 10),
-                (".info", 11),
-                (".biz", 12),
-                (".gov", 13),
-            ]
-            
-            var stringBuffer = self
-            
-            //Look for http://, etc and replace with encoding
-            for prefix in urlSchemePrefixes {
-                if stringBuffer.hasPrefix(prefix.pattern) {
-                    if let range = stringBuffer.rangeOfString(prefix.pattern) {
-                        bytes.append(prefix.encoding)
-                        stringBuffer.removeRange(range)
-                        break
-                    }
-                }
-            }
-            
-            //For the rest of the string, loop through the
-            while(!stringBuffer.isEmpty) {
-                
-                var foundEncoding = false
-                for urlEncoding in urlEncodings {
-                    if stringBuffer.hasPrefix(urlEncoding.pattern) {
-                        if let range = stringBuffer.rangeOfString(urlEncoding.pattern) {
-                            bytes.append(urlEncoding.encoding)
-                            stringBuffer.removeRange(range)
-                            
-                            foundEncoding = true
-                            break
-                        }
-                    }
-                }
-                
-                if !foundEncoding {
-                    for character in stringBuffer.unicodeScalars {
-                        
-                        bytes.append( UInt8(character.value) )
-                        stringBuffer = String(stringBuffer.characters.dropFirst())
-                        break
-                    }
-                }
-                
-                
-            }
-    
-            
-            return NSData(bytes: bytes, length: bytes.count)
-        }
-    }
-    
+    //Converts the `String` to an `NSData` object
     var data: NSData {
         if let data = self.dataUsingEncoding(NSUTF8StringEncoding) {
             return data
@@ -256,6 +116,7 @@ extension String {
 
 extension NSString {
     
+    //Converts the `NSString` to an `NSData` object
     var data: NSData {
         if let data = self.dataUsingEncoding(NSUTF8StringEncoding) {
             return data

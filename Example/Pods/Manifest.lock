@@ -1,0 +1,14 @@
+PODS:
+  - MagicExtensions (0.1.0)
+
+DEPENDENCIES:
+  - MagicExtensions (from `../`)
+
+EXTERNAL SOURCES:
+  MagicExtensions:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MagicExtensions: b7dd5cae1fe9a5529b8b52a78100fa9b0e25ca3d
+
+COCOAPODS: 0.39.0
