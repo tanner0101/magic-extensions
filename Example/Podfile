@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+use_frameworks!
+
+target 'MagicExtensions_Example', :exclusive => true do
+  pod "MagicExtensions", :path => "../"
+end
+
+target 'MagicExtensions_Tests', :exclusive => true do
+  pod "MagicExtensions", :path => "../"
+
+  
+end
