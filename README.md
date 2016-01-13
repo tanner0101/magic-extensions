@@ -20,6 +20,22 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 This extensions takes the hassle out of adding, removing, and moving the `UITableViewCell`s of your table. Instead of calling `reloadData()`, use this extension to switch from the old data source to the new data source–just choose how you want the transition animated. You can even switch data sources for a given section. 
 
+### UIView
+
+#### instantiateFromNib()
+
+Easily instantiate a UIView object from a nib in the NSBundle by passing the name of the nib.
+
+#### constrainToSuperview()
+
+Constrain a subview to all the edges of its superview with one line.
+
+### NSTimeInterval
+
+#### readable
+
+Make a human readable string like `5 hours` from any `NSTimeInterval`
+
 ### NSData
 
 The NSData extensions contain a number of conversions from Ints and Strings to NSData and vice-versa.
@@ -29,6 +45,12 @@ The NSData extensions contain a number of conversions from Ints and Strings to N
 #### ^^
 
 This infix operator allows for easy 'to the power of' operations such as `2^^4 = 16`.
+
+### MKMapView
+
+#### zoomToAnnotations()
+
+Zoom into and center the MKAnnotations on an MKMapView with one line. With our without animation.
 
 ### CoreBluetooth
 
