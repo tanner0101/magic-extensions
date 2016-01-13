@@ -8,24 +8,16 @@
 
 Pod::Spec.new do |s|
   s.name             = "MagicExtensions"
-  s.version          = "0.1.0"
-  s.summary          = "A short description of MagicExtensions."
+  s.version          = "1.0.0"
+  s.summary          = "Magic Swift standard library extensions."
+  s.description      = "A collection of Swift standard library extensions that simplify common tasks."
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!  
-  s.description      = <<-DESC
-                       DESC
-
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/MagicExtensions"
+  s.homepage         = "https://github.com/tannernelson/magic-extensions"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Tanner Nelson" => "tanner@bluebite.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/MagicExtensions.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
+  s.source           = { :git => "https://github.com/tannernelson/magic-extensions.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/the_teet'
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
@@ -33,8 +25,4 @@ Pod::Spec.new do |s|
   s.resource_bundles = {
     'MagicExtensions' => ['Pod/Assets/*.png']
   }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
