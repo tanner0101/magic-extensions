@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "MagicExtensions"
-  s.version          = "1.0.2"
+  s.version          = "1.0.3"
   s.summary          = "Magic Swift standard library extensions."
   s.description      = "A collection of Swift standard library extensions that simplify common tasks."
 

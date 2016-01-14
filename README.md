@@ -81,9 +81,11 @@ it, simply add the following line to your Podfile:
 pod "MagicExtensions"
 ```
 
-When you want to use one of the extensions, open the `MagicExtensions` folder in the `Pods` folder in your project. Add any of the extension files you want to your project by clicking on them and checking your main application in the `Target Membership` pane.
+When you want to use one of the extensions, open the `MagicExtensions` folder in the `Pods` folder in your project. Right click on the file you want, and select "Open in Finder". Then, drag the file into your main application, ensuring to select "Copy if Needed".
 
-Note: Adding extensions to the Target Membership of your main application is required because (as of this writing) Swift does not support exposing extensions from different modules.
+Add any of the extension files you want to your other Pods by clicking on them and checking the desired Pod in the `Target Membership` pane.
+
+Note: Adding extensions this way is required because (as of this writing) Swift does not support exposing extensions from different modules.
 
 ## Author
 
