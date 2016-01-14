@@ -20,6 +20,14 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 This extensions takes the hassle out of adding, removing, and moving the `UITableViewCell`s of your table. Instead of calling `reloadData()`, use this extension to switch from the old data source to the new data source–just choose how you want the transition animated. You can even switch data sources for a given section. 
 
+### UIScrollView
+
+#### respondToKeyboard()
+
+This simple function call allows any UIScrollView to dynamically respond to the touch keyboard opening and closing. It takes care of setting up the appropriate `NSNotificationCenter` subscriptions and even automatically scrolls to the active `UITextField`.
+
+Just create a reference to the `UIScrollView` in your `UIViewController` and call this function in `viewDidLoad()`
+
 ### UIView
 
 #### instantiateFromNib()
@@ -58,6 +66,12 @@ Zoom into and center the MKAnnotations on an MKMapView with one line. With our w
 
 Easily read or print the current state of a `CBCentralManager` or `CBPeripheralManager` object instead of trying to inspect the enum's value.
 
+### UIFront
+
+#### printFontNames()
+
+Prints out all of the font families and names in UIFont. This is often a required step of including custom fonts in your application. 
+
 ## Installation
 
 MagicExtensions is available through [CocoaPods](http://cocoapods.org). To install
@@ -66,6 +80,10 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "MagicExtensions"
 ```
+
+When you want to use one of the extensions, open the `MagicExtensions` folder in the `Pods` folder in your project. Add any of the extension files you want to your project by clicking on them and checking your main application in the `Target Membership` pane.
+
+Note: Adding extensions to the Target Membership of your main application is required because (as of this writing) Swift does not support exposing extensions from different modules.
 
 ## Author
 

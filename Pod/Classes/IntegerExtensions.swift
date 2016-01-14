@@ -1,3 +1,5 @@
+import Foundation
+
 extension Int {
     
     ///Creates an `Int` from an arbitrary byte array
